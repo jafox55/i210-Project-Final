@@ -1,0 +1,107 @@
+<!doctype html>
+<!--
+  Favorites page layout:
+  - Shared navigation
+  - Favorites heading + local filter input
+  - Favorites grid rendered from Firebase data
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favorites | The Game Archive</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Shared top navigation -->
+    <nav>
+      <div class="logo-container">
+        <img src="images/logo.svg" alt="The Game Archive Logo" class="logo" />
+        <span class="logo-text">The Game Archive</span>
+      </div>
+
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="games.html">Catalog</a>
+        <a href="search.html">Search Games</a>
+        <a href="favorites.html" aria-current="page">Favorites</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+
+    <!-- Favorites content shell -->
+    <section class="favorites-shell">
+      <div class="catalog-section">
+        <h2>Your Favorites</h2>
+      </div>
+
+      <!-- Client-side filter field for favorites list -->
+      <div class="favorites-toolbar">
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Filter favorites by ID or title"
+        />
+      </div>
+
+      <!-- Cards are injected by favorites.js -->
+      <div id="catalog-grid" class="catalog-grid"></div>
+
+      <!-- Status edit modal (shown when user clicks "Edit status") -->
+      <div
+        id="status-modal"
+        class="status-modal hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="status-modal-title"
+      >
+        <div class="status-modal-panel">
+          <h3 id="status-modal-title">Update game status</h3>
+          <p id="status-modal-game" class="status-modal-game"></p>
+
+          <label for="status-select" class="status-modal-label">Status</label>
+          <select id="status-select" class="status-modal-select">
+            <option value="playing">Playing</option>
+            <option value="wishlist">Wishlist</option>
+            <option value="completed">Completed</option>
+          </select>
+
+          <div class="status-modal-actions">
+            <button
+              id="status-cancel"
+              type="button"
+              class="card-button status-cancel-btn"
+            >
+              Cancel
+            </button>
+            <button
+              id="status-save"
+              type="button"
+              class="card-button status-save-btn"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Shared footer -->
+    <footer>
+      <p class="footer">Made by Caitlynn Faulkner, Jacob Fox, and Ben Fox</p>
+    </footer>
+    <!-- Firebase SDKs required by favorites.js -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <!-- Shared adult-mask toggle + favorites rendering logic -->
+    <script src="js/adult-toggle.js"></script>
+    <script src="js/favorites.js"></script>
+  </body>
+</html>
